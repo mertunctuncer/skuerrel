@@ -1,7 +1,6 @@
 package dev.peopo.apexsql.data
 
-class SQLPairList{
-	private val pairs = arrayListOf<SQLPair<Any?>>()
+class SQLPairList(private val pairs : MutableList<SQLPair<*>> = mutableListOf()){
 
 	val size
 		get() = pairs.size
