@@ -1,20 +1,21 @@
 package dev.peopo.apexsql.impl.query.row
 
-import dev.peopo.apexsql.SQLTable
+import dev.peopo.apexsql.Table
 import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.impl.query.SQLQuery
+import dev.peopo.apexsql.impl.query.Query
+import java.sql.Connection
 import java.sql.SQLException
 
-internal class SelectQuery(table: SQLTable) : SQLQuery(table) {
+internal class SelectQuery(connection: Connection, table: Table) : Query(connection, table) {
 	private var pairList : SQLPairList? = null
 	private var whereString : String? = null
 	private var whereValues : List<Any?>? = null
 
-	constructor(table: SQLTable, where: SQLPairList? = null) : this(table) {
+	constructor(connection: Connection, table: Table, where: SQLPairList? = null) : this(connection, table) {
 		pairList = where
 	}
 
-	constructor(table: SQLTable, whereString: String, whereValues: List<Any?>) : this(table){
+	constructor(connection: Connection, table: Table, whereString: String, whereValues: List<Any?>) : this(connection, table){
 		this.whereString = whereString
 		this.whereValues = whereValues
 	}

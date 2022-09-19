@@ -1,11 +1,12 @@
 package dev.peopo.apexsql.impl.query.row
 
-import dev.peopo.apexsql.SQLTable
+import dev.peopo.apexsql.Table
 import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.impl.query.SQLQuery
+import dev.peopo.apexsql.impl.query.Query
+import java.sql.Connection
 import java.sql.SQLException
 
-internal class DeleteQuery(table: SQLTable, private val where: SQLPairList? = null) : SQLQuery(table) {
+internal class DeleteQuery(connection: Connection, table: Table, private val where: SQLPairList? = null) : Query(connection, table) {
 
 	override val query: String
 

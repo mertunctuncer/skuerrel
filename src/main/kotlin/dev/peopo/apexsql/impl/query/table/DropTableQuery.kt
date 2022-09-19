@@ -1,10 +1,11 @@
 package dev.peopo.apexsql.impl.query.table
 
-import dev.peopo.apexsql.SQLTable
-import dev.peopo.apexsql.impl.query.SQLQuery
+import dev.peopo.apexsql.Table
+import dev.peopo.apexsql.impl.query.Query
+import java.sql.Connection
 import java.sql.SQLException
 
-internal class DropTableQuery(table: SQLTable) : SQLQuery(table) {
+internal class DropTableQuery(connection: Connection, table: Table) : Query(connection, table) {
 	override val query: String
 
 	init {

@@ -1,11 +1,12 @@
 package dev.peopo.apexsql.impl.query.table
 
-import dev.peopo.apexsql.SQLTable
-import dev.peopo.apexsql.impl.query.SQLQuery
+import dev.peopo.apexsql.Table
+import dev.peopo.apexsql.impl.query.Query
+import java.sql.Connection
 import java.sql.SQLException
 
 
-internal class CreateTableQuery(table: SQLTable, ifNotExist: Boolean = true) : SQLQuery(table) {
+internal class CreateTableQuery(connection: Connection, table: Table, ifNotExist: Boolean = true) : Query(connection, table) {
 
 	override val query: String
 
