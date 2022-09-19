@@ -30,7 +30,10 @@ tasks {
     compileKotlin{
         kotlinOptions.jvmTarget = "1.8"
     }
-
+    wrapper {
+        gradleVersion = "7.4"
+        distributionType = Wrapper.DistributionType.ALL
+    }
 }
 
 publishing {
@@ -43,9 +46,4 @@ publishing {
             from(components["java"])
         }
     }
-}
-
-tasks.wrapper {
-    gradleVersion = "7.4"
-    distributionType = Wrapper.DistributionType.ALL
 }
