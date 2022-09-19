@@ -1,6 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    java
+    `maven-publish`
     kotlin("jvm") version "1.7.10"
 }
 
@@ -17,9 +19,14 @@ dependencies {
     implementation("com.zaxxer:HikariCP:4.0.3")
 
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.+")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.+")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.+")
+}
+
+tasks.wrapper {
+    gradleVersion = "7.4"
+    distributionType = Wrapper.DistributionType.ALL
 }
 
 tasks.test {
