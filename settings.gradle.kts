@@ -1,3 +1,3 @@
 
-rootProject.name = "apex-sql"
+rootProject.name = "kuery"
 

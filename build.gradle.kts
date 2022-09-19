@@ -32,6 +32,10 @@ tasks {
         gradleVersion = "7.4"
         distributionType = Wrapper.DistributionType.ALL
     }
+    compileJava {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
 }
 
 publishing {
