@@ -2,7 +2,6 @@ package dev.peopo.apexsql.reflection
 
 import dev.peopo.apexsql.annotation.*
 import dev.peopo.apexsql.data.ColumnData
-import java.lang.IllegalArgumentException
 import java.sql.Timestamp
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty

@@ -1,7 +1,6 @@
 package dev.peopo.apexsql.reflection
 
 import dev.peopo.apexsql.annotation.Column
-import java.lang.IllegalArgumentException
 import kotlin.reflect.KClass
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
