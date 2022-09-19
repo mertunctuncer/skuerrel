@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     java
     `maven-publish`
@@ -8,7 +6,7 @@ plugins {
 
 group = "dev.peopo"
 version = "1.0.0"
-description = "A SQL serializer library for MySQL, MariaDB and PostgreSQL."
+description = "A lightweight SQL serializer library for kotlin."
 
 repositories {
     mavenCentral()
