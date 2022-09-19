@@ -13,7 +13,13 @@ repositories {
 }
 
 dependencies {
-    implementation("com.zaxxer:HikariCP:5.0.1")
+    // 4.0.3 is the latest version to support java 8
+    implementation("com.zaxxer:HikariCP:4.0.3")
+
+    // PostgreSQL JDBC driver
+    implementation("org.postgresql:postgresql:42.5.0")
+
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")

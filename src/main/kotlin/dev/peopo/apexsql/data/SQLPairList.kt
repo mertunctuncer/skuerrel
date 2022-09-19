@@ -1,7 +1,7 @@
 package dev.peopo.apexsql.data
 
 class SQLPairList{
-	private val pairs = arrayListOf<SQLPair<String, Any?>>()
+	private val pairs = arrayListOf<SQLPair<Any?>>()
 
 	val size
 		get() = pairs.size
@@ -9,7 +9,7 @@ class SQLPairList{
 		get() = pairs.lastIndex
 
 	fun add(column: String, value: Any?) = pairs.add(SQLPair(column, value))
-	fun add(pair : SQLPair<String, Any?>) = pairs.add(pair)
+	fun add(pair : SQLPair<Any?>) = pairs.add(pair)
 
 	fun getColumn(index: Int) = pairs[index].column
 	fun getValue(index: Int) = pairs[index].value
