@@ -24,15 +24,28 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.+")
 }
 
+
+
+tasks {
+    compileKotlin{
+        kotlinOptions.jvmTarget = "1.8"
+    }
+
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "${project.group}"
+            artifactId = rootProject.name
+            version = "${project.version}"
+
+            from(components["java"])
+        }
+    }
+}
+
 tasks.wrapper {
     gradleVersion = "7.4"
     distributionType = Wrapper.DistributionType.ALL
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
 }
