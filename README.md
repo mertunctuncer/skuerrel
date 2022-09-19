@@ -1,2 +1,3 @@
-# apex-sql
-A lightweight SQL serialization library for kotlin.
+# Apex SQL
+
+A lightweight SQL serialization library for kotlin utilizing HikariCP.
