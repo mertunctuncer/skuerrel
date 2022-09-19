@@ -1,7 +1,7 @@
-package dev.peopo.apexsql.reflection
+package dev.peopo.skuerrel.reflection
 
-import dev.peopo.apexsql.annotation.*
-import dev.peopo.apexsql.data.ColumnData
+import dev.peopo.skuerrel.annotation.*
+import dev.peopo.skuerrel.data.ColumnData
 import java.sql.Timestamp
 import kotlin.reflect.KClass
 import kotlin.reflect.KMutableProperty

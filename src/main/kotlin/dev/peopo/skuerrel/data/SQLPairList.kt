@@ -1,9 +1,10 @@
-package dev.peopo.apexsql.data
+package dev.peopo.skuerrel.data
 
 class SQLPairList(private val pairs : MutableList<SQLPair<*>> = mutableListOf()){
 
 	val size
 		get() = pairs.size
+	@Suppress("unused")
 	val lastIndex
 		get() = pairs.lastIndex
 
@@ -28,6 +29,7 @@ class SQLPairList(private val pairs : MutableList<SQLPair<*>> = mutableListOf())
 		return valueStr.dropLast(2)
 	}
 
+	@Suppress("unused")
 	internal fun asSetSyntax() : String {
 		var setStr = ""
 		for(pair in pairs) setStr += "${pair.column} = ?, "

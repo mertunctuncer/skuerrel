@@ -1,6 +1,6 @@
-package dev.peopo.apexsql.reflection
+package dev.peopo.skuerrel.reflection
 
-import dev.peopo.apexsql.annotation.Column
+import dev.peopo.skuerrel.annotation.Column
 import kotlin.reflect.KClass
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties

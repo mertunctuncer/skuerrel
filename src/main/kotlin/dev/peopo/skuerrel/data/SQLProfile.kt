@@ -1,5 +1,6 @@
-package dev.peopo.apexsql.data
+package dev.peopo.skuerrel.data
 
+@Suppress("unused")
 data class SQLProfile(
 	val host: String,
 	val port: Int,

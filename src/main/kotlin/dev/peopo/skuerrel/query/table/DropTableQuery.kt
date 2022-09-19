@@ -1,7 +1,7 @@
-package dev.peopo.apexsql.query.table
+package dev.peopo.skuerrel.query.table
 
-import dev.peopo.apexsql.Table
-import dev.peopo.apexsql.query.Query
+import dev.peopo.skuerrel.Table
+import dev.peopo.skuerrel.query.Query
 import java.sql.Connection
 import java.sql.SQLException
 

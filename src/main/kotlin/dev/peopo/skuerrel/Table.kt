@@ -1,16 +1,16 @@
-package dev.peopo.apexsql
+package dev.peopo.skuerrel
 
 import com.zaxxer.hikari.HikariDataSource
-import dev.peopo.apexsql.annotation.Table
-import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.query.row.DeleteQuery
-import dev.peopo.apexsql.query.row.InsertQuery
-import dev.peopo.apexsql.query.row.SelectQuery
-import dev.peopo.apexsql.query.row.UpdateQuery
-import dev.peopo.apexsql.query.table.CreateTableQuery
-import dev.peopo.apexsql.query.table.DropTableQuery
-import dev.peopo.apexsql.reflection.DataSerializer
-import dev.peopo.apexsql.reflection.TableSerializer
+import dev.peopo.skuerrel.annotation.Table
+import dev.peopo.skuerrel.data.SQLPairList
+import dev.peopo.skuerrel.query.row.DeleteQuery
+import dev.peopo.skuerrel.query.row.InsertQuery
+import dev.peopo.skuerrel.query.row.SelectQuery
+import dev.peopo.skuerrel.query.row.UpdateQuery
+import dev.peopo.skuerrel.query.table.CreateTableQuery
+import dev.peopo.skuerrel.query.table.DropTableQuery
+import dev.peopo.skuerrel.reflection.DataSerializer
+import dev.peopo.skuerrel.reflection.TableSerializer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -93,8 +93,12 @@ class Table<T: Any> (val dataSource: HikariDataSource, kClass : KClass<out T>) {
 	}.await()
 
 	@Suppress("unused")
-	fun deleteAsync(where: SQLPairList) = CoroutineScope(Dispatchers.IO).launch { DeleteQuery(dataSource.connection, this@Table, where) }
+	fun deleteAsync(where: SQLPairList) = CoroutineScope(Dispatchers.IO).launch {
+		DeleteQuery(dataSource.connection, this@Table, where).execute()
+	}
 
 	@Suppress("unused")
-	fun deleteAllAsync() = CoroutineScope(Dispatchers.IO).launch { DeleteQuery(dataSource.connection, this@Table) }
+	fun deleteAllAsync() = CoroutineScope(Dispatchers.IO).launch {
+		DeleteQuery(dataSource.connection, this@Table).execute()
+	}
 }

@@ -1,6 +1,6 @@
-package dev.peopo.apexsql.query
+package dev.peopo.skuerrel.query
 
-import dev.peopo.apexsql.Table
+import dev.peopo.skuerrel.Table
 import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet

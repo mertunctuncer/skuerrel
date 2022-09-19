@@ -1,8 +1,8 @@
-package dev.peopo.apexsql.query.row
+package dev.peopo.skuerrel.query.row
 
-import dev.peopo.apexsql.Table
-import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.query.Query
+import dev.peopo.skuerrel.Table
+import dev.peopo.skuerrel.data.SQLPairList
+import dev.peopo.skuerrel.query.Query
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.SQLException

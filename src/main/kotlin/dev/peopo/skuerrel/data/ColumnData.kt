@@ -1,4 +1,4 @@
-package dev.peopo.apexsql.data
+package dev.peopo.skuerrel.data
 
 internal data class ColumnData(
 	val name: String,

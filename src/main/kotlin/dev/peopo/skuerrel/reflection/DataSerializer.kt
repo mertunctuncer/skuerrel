@@ -1,8 +1,8 @@
-package dev.peopo.apexsql.reflection
+package dev.peopo.skuerrel.reflection
 
-import dev.peopo.apexsql.annotation.Column
-import dev.peopo.apexsql.data.SQLPair
-import dev.peopo.apexsql.data.SQLPairList
+import dev.peopo.skuerrel.annotation.Column
+import dev.peopo.skuerrel.data.SQLPair
+import dev.peopo.skuerrel.data.SQLPairList
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.createInstance
 import kotlin.reflect.full.findAnnotation

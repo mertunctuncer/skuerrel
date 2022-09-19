@@ -1,5 +1,5 @@
-package dev.peopo.apexsql.annotation
+package dev.peopo.skuerrel.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.PROPERTY)
-annotation class PrimaryKey
+annotation class ForeignKey
