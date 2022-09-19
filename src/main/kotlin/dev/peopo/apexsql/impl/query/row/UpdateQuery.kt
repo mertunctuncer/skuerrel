@@ -19,7 +19,7 @@ internal class UpdateQuery(connection: Connection, table: Table, private val set
 	}
 
 	fun execute() = try {
-		statement = connection!!.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
+		statement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
 		if (where != null) {
 			for (i in where.withIndex()) {
 				this.statement!!.setObject(i.index + 1, i.value)
