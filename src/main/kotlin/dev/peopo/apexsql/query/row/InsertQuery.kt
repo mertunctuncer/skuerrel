@@ -1,14 +1,14 @@
-package dev.peopo.apexsql.impl.query.row
+package dev.peopo.apexsql.query.row
 
 import dev.peopo.apexsql.Table
 import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.impl.query.Query
+import dev.peopo.apexsql.query.Query
 import java.sql.Connection
 import java.sql.SQLException
 
-internal class UpsertQuery(connection: Connection, table: Table, private val set: SQLPairList) : Query(connection, table) {
+class InsertQuery(connection: Connection, table: Table<*>, private val set: SQLPairList) : Query(connection, table) {
 
-	override val query: String = "UPSERT INTO ${table.name}(${set.asKeySyntax()}) VALUES (${set.asValueSyntax()});"
+	override val query: String = "INSERT INTO ${table.name}(${set.asKeySyntax()}) VALUES (${set.asValueSyntax()});"
 
 	fun execute() = try {
 		prepareStatement()
@@ -20,4 +20,5 @@ internal class UpsertQuery(connection: Connection, table: Table, private val set
 	} finally {
 		close()
 	}
+
 }

@@ -1,4 +1,4 @@
-package dev.peopo.apexsql.impl.query
+package dev.peopo.apexsql.query
 
 import dev.peopo.apexsql.Table
 import java.sql.Connection
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import java.sql.SQLException
 
-internal abstract class Query(protected val connection: Connection, protected val table: Table) {
+abstract class Query(protected val connection: Connection, protected val table: Table<*>) {
 	protected var statement : PreparedStatement? = null
 	protected var result : ResultSet? = null
 
@@ -23,11 +23,11 @@ internal abstract class Query(protected val connection: Connection, protected va
 		connection.close()
 	}
 
-	fun prepareStatement() {
+	protected fun prepareStatement() {
 		statement = connection.prepareStatement(query)
 	}
 
-	fun executeUpdate() = statement!!.executeUpdate()
-	fun commit() = connection.commit()
+	protected fun executeUpdate() = statement!!.executeUpdate()
+	protected fun commit() = connection.commit()
 
 }

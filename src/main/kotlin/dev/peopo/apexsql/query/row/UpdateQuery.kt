@@ -1,13 +1,13 @@
-package dev.peopo.apexsql.impl.query.row
+package dev.peopo.apexsql.query.row
 
 import dev.peopo.apexsql.Table
 import dev.peopo.apexsql.data.SQLPairList
-import dev.peopo.apexsql.impl.query.Query
+import dev.peopo.apexsql.query.Query
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.SQLException
 
-internal class UpdateQuery(connection: Connection, table: Table, private val set: SQLPairList, private val where: SQLPairList?) : Query(connection, table) {
+class UpdateQuery(connection: Connection, table: Table<*>, private val set: SQLPairList, private val where: SQLPairList?) : Query(connection, table) {
 
 	override val query: String
 
