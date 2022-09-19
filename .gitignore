@@ -1,10 +1,21 @@
+
+### Gradle ###
+gradle.properties
+gradlew
+gradlew.bat
 .gradle
-build/
+gradle
 !gradle/wrapper/gradle-wrapper.jar
+
+
+### Build ###
+build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
+.idea
+.idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
