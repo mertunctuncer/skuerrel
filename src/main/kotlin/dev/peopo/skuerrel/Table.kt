@@ -11,10 +11,7 @@ import dev.peopo.skuerrel.query.table.CreateTableQuery
 import dev.peopo.skuerrel.query.table.DropTableQuery
 import dev.peopo.skuerrel.reflection.DataSerializer
 import dev.peopo.skuerrel.reflection.TableSerializer
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.SQLException
@@ -29,7 +26,7 @@ class Table<T: Any> (val dataSource: HikariDataSource, kClass : KClass<out T>) {
 
 
 	@Suppress("unused")
-	suspend fun fetchExistsAsync() = CoroutineScope(Dispatchers.IO).async {
+	suspend fun fetchExistsAsync() = withContext(Dispatchers.IO) {
 		var connection: Connection? = null
 		var result : ResultSet? = null
 		try {
@@ -38,67 +35,67 @@ class Table<T: Any> (val dataSource: HikariDataSource, kClass : KClass<out T>) {
 			result = meta.getTables(null, null, name, null)
 			val exist = result!!.next()
 			connection.commit()
-			return@async exist
+			return@withContext exist
 		} catch (e: SQLException) {
 			connection?.rollback()
 			e.printStackTrace()
-			return@async false
+			return@withContext false
 		} finally {
 			result?.close()
 			connection?.close()
 		}
-	}.await()
+	}
 
 	@Suppress("unused")
-	fun createAsync(@Suppress("unused_parameter")ifNotExist : Boolean = true) = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun create(@Suppress("unused_parameter")ifNotExist : Boolean = true) = withContext(Dispatchers.IO) {
 		CreateTableQuery(dataSource.connection, this@Table, true).execute()
 	}
 
 	@Suppress("unused")
-	fun dropAsync() = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun drop() = withContext(Dispatchers.IO) {
 		DropTableQuery(dataSource.connection, this@Table).execute()
 	}
 
 	@Suppress("unused")
-	fun insertAsync(serializable: T) = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun insert(serializable: T) = withContext(Dispatchers.IO) {
 		InsertQuery(dataSource.connection, this@Table, DataSerializer.serialize(serializable)).execute()
 	}
 
 	@Suppress("unused")
-	fun updateAsync(serializable: T, where: SQLPairList) = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun update(serializable: T, where: SQLPairList) = withContext(Dispatchers.IO) {
 		UpdateQuery(dataSource.connection, this@Table, DataSerializer.serialize(serializable), where).execute()
 	}
 
 	@Suppress("unused")
-	fun updateAsync(set: SQLPairList, where: SQLPairList) = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun update(set: SQLPairList, where: SQLPairList) = withContext(Dispatchers.IO) {
 		UpdateQuery(dataSource.connection, this@Table, set, where)
 	}
 
 	@Suppress("unused")
-	suspend inline fun <reified K: Any>fetchAsync(where: SQLPairList) = CoroutineScope(Dispatchers.IO).async {
+	suspend inline fun <reified K: Any>fetch(where: SQLPairList) = withContext(Dispatchers.IO) {
 		val result = SelectQuery(dataSource.connection, this@Table, where).execute()
-		return@async result.map { DataSerializer.deserialize<K>(it) }
-	}.await()
+		return@withContext result.map { DataSerializer.deserialize<K>(it) }
+	}
 
 	@Suppress("unused")
-	suspend inline fun <reified K: Any> fetchAsync(where: String, values: List<Any?>) = CoroutineScope(Dispatchers.IO).async {
+	suspend inline fun <reified K: Any> fetch(where: String, values: List<Any?>) = withContext(Dispatchers.IO) {
 		val result = SelectQuery(dataSource.connection, this@Table, where, values).execute()
-		return@async result.map { DataSerializer.deserialize<K>(it) }
-	}.await()
+		return@withContext result.map { DataSerializer.deserialize<K>(it) }
+	}
 
 	@Suppress("unused")
-	suspend inline fun <reified K: Any> fetchAllAsync() = CoroutineScope(Dispatchers.IO).async {
+	suspend inline fun <reified K: Any> fetchAll() = withContext(Dispatchers.IO) {
 		val result = SelectQuery(dataSource.connection, this@Table).execute()
-		return@async result.map { DataSerializer.deserialize<K>(it) }
-	}.await()
+		return@withContext result.map { DataSerializer.deserialize<K>(it) }
+	}
 
 	@Suppress("unused")
-	fun deleteAsync(where: SQLPairList) = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun delete(where: SQLPairList) = withContext(Dispatchers.IO) {
 		DeleteQuery(dataSource.connection, this@Table, where).execute()
 	}
 
 	@Suppress("unused")
-	fun deleteAllAsync() = CoroutineScope(Dispatchers.IO).launch {
+	suspend fun deleteAll() = withContext(Dispatchers.IO) {
 		DeleteQuery(dataSource.connection, this@Table).execute()
 	}
 }
