@@ -4,6 +4,5 @@ package dev.peopo.skuerrel.annotation
 @Target(AnnotationTarget.PROPERTY)
 annotation class Column(
 	val index: Int,
-	val name: String,
 	val size: Int = -1
 )

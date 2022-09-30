@@ -1,6 +1,7 @@
 package dev.peopo.skuerrel.reflection
 
 import dev.peopo.skuerrel.annotation.Column
+import dev.peopo.skuerrel.annotation.Name
 import dev.peopo.skuerrel.data.SQLPair
 import dev.peopo.skuerrel.data.SQLPairList
 import kotlin.reflect.KMutableProperty
@@ -16,8 +17,9 @@ object DataSerializer {
 		val instance = kClass.createInstance()
 		for (property in kClass.memberProperties) {
 			if (!property.hasAnnotation<Column>()) continue
-			if (property is KMutableProperty<*>) property.setter.call(values[property.name])
-			else throw IllegalAccessException("Propery is not mutable")
+			val name = property.findAnnotation<Name>()?.name ?: property.name
+			if (property is KMutableProperty<*>) property.setter.call(values[name])
+			else throw IllegalAccessException("Property is not mutable")
 		}
 		return instance
 	}
