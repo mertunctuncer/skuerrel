@@ -15,8 +15,6 @@ object TableSerializer {
 	internal fun serialize(kClass: KClass<out Any>): List<ColumnData> {
 		val columnArray = createEmptyList<ColumnData>(kClass)
 
-		if (kClass.primaryConstructor != null) throw IllegalArgumentException("Primary constructors are not supported.")
-
 		for (property in kClass.memberProperties) {
 			val column = property.findAnnotation<Column>() ?: continue
 			val name = property.findAnnotation<Name>()?.name ?: property.name
