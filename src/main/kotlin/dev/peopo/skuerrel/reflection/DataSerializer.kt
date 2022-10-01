@@ -18,6 +18,7 @@ object DataSerializer {
 		for (property in kClass.memberProperties) {
 			if (!property.hasAnnotation<Column>()) continue
 			val name = property.findAnnotation<Name>()?.name ?: property.name
+			println("debug")
 			if (property is KMutableProperty<*>) property.setter.call(values[name])
 			else throw IllegalAccessException("Property is not mutable")
 		}

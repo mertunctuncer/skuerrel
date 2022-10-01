@@ -72,9 +72,9 @@ class Table<T: Any> (val dataSource: HikariDataSource, kClass : KClass<out T>) {
 	}
 
 	@Suppress("unused")
-	suspend inline fun <reified K: Any>fetch(where: SQLPairList) = withContext(Dispatchers.IO) {
+	inline fun <reified K: Any>fetch(where: SQLPairList): List<K> {
 		val result = SelectQuery(dataSource.connection, this@Table, where).execute()
-		return@withContext result.map { DataSerializer.deserialize<K>(it) }
+		return result.map { DataSerializer.deserialize<K>(it) }
 	}
 
 	@Suppress("unused")
