@@ -12,7 +12,7 @@ class InsertQuery(connection: Connection, table: Table<*>, private val set: SQLP
 
 	fun execute() = try {
 		prepareStatement()
-		for (i in set.withIndex()) statement!!.setObject(i.index + 1, i.value)
+		for (i in set.withIndex()) statement!!.setObject(i.index + 1, i.value.value)
 		executeUpdate()
 		commit()
 	} catch (e: SQLException) {

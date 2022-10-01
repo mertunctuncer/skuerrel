@@ -36,7 +36,7 @@ class SelectQuery(connection: Connection, table: Table<*>) : Query(connection, t
 			prepareStatement()
 
 			if(whereValues != null) for(i in whereValues!!.withIndex()) statement!!.setObject(i.index + 1, i.value)
-			else if(pairList != null) for (i in pairList!!.withIndex()) statement!!.setObject(i.index + 1, i.value)
+			else if(pairList != null) for (i in pairList!!.withIndex()) statement!!.setObject(i.index + 1, i.value.value)
 
 			result = statement!!.executeQuery()
 

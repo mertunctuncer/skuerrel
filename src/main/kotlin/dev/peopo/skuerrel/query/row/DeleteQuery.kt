@@ -18,7 +18,7 @@ class DeleteQuery(connection: Connection, table: Table<*>, private val where: SQ
 
 	fun execute() = try {
 		prepareStatement()
-		if(where != null) for (i in where.withIndex()) statement!!.setObject(i.index + 1, i.value)
+		if(where != null) for (i in where.withIndex()) statement!!.setObject(i.index + 1, i.value.value)
 		executeUpdate()
 		commit()
 	} catch (e: SQLException) {

@@ -22,12 +22,12 @@ class UpdateQuery(connection: Connection, table: Table<*>, private val set: SQLP
 		statement = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)
 		if (where != null) {
 			for (i in where.withIndex()) {
-				this.statement!!.setObject(i.index + 1, i.value)
+				this.statement!!.setObject(i.index + 1, i.value.value)
 			}
 		}
 		result = statement!!.executeQuery()
 		while (result!!.next()) {
-			for (j in set.withIndex()) result!!.updateObject(set.getColumn(j.index), j.value)
+			for (j in set.withIndex()) result!!.updateObject(set.getColumn(j.index), j.value.value)
 			result!!.updateRow()
 		}
 		commit()
