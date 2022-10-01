@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.peopo"
-version = "1.2.0"
+version = "1.2.1"
 description = "A lightweight SQL serializer library for kotlin."
 
 repositories {
