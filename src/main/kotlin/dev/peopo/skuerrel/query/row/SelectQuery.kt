@@ -27,6 +27,7 @@ class SelectQuery(connection: Connection, table: Table<*>) : Query(connection, t
 		if(whereString != null) selectQuery += " WHERE $whereString"
 		else if(pairList != null) selectQuery += " WHERE ${pairList!!.asWhereSyntax()}"
 		query = "$selectQuery;"
+		println(query)
 	}
 
 	fun execute() : List<Map<String, Any?>> {
