@@ -12,23 +12,21 @@ class SelectQuery(connection: Connection, table: Table<*>) : Query(connection, t
 	private var whereValues : List<Any?>? = null
 
 	constructor(connection: Connection, table: Table<*>, where: SQLPairList? = null) : this(connection, table) {
-		pairList = where
+		var selectQuery = "SELECT * FROM ${table.name}"
+		this.pairList = where
+		if(pairList != null) selectQuery += " WHERE ${pairList!!.asWhereSyntax()}"
+		query = "$selectQuery;"
 	}
 
 	constructor(connection: Connection, table: Table<*>, whereString: String, whereValues: List<Any?>) : this(connection, table){
 		this.whereString = whereString
 		this.whereValues = whereValues
-	}
-
-	override val query: String
-
-	init {
 		var selectQuery = "SELECT * FROM ${table.name}"
-		if(whereString != null) selectQuery += " WHERE $whereString"
-		else if(pairList != null) selectQuery += " WHERE ${pairList!!.asWhereSyntax()}"
+		selectQuery += " WHERE $whereString"
 		query = "$selectQuery;"
-		println(query)
 	}
+
+	override lateinit var query: String
 
 	fun execute() : List<Map<String, Any?>> {
 		val results = mutableListOf<Map<String, Any?>>()

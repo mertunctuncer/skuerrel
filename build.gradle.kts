@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.peopo"
-version = "1.2.1"
+version = "1.2.4"
 description = "A lightweight SQL serializer library for kotlin."
 
 repositories {
@@ -20,6 +20,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.+")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.+")
+
+    implementation("org.postgresql:postgresql:42.5.0")
 }
 
 
