@@ -10,7 +10,7 @@ import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.withNullability
 
-object TableSerializer {
+internal object TableSerializer {
 	internal fun serialize(kClass: KClass<out Any>): List<ColumnData> {
 		val columnArray = createEmptyList<ColumnData>(kClass)
 
