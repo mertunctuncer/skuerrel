@@ -5,4 +5,6 @@ import java.sql.Connection
 interface ConnectionProvider {
 
 	fun getConnection() : Connection
+
+	fun setCommit(autoCommit : Boolean)
 }

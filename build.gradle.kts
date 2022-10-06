@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "dev.peopo"
-version = "1.3.0"
+version = "1.4.0"
 description = "A lightweight SQL serializer library for kotlin."
 
 repositories {
@@ -28,10 +28,6 @@ tasks {
     wrapper {
         gradleVersion = "7.4"
         distributionType = Wrapper.DistributionType.ALL
-    }
-    compileJava {
-        sourceCompatibility = "1.8"
-        targetCompatibility = "1.8"
     }
 }
 
