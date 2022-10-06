@@ -8,7 +8,6 @@ import kotlin.reflect.KMutableProperty
 import kotlin.reflect.KProperty1
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties
-import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.withNullability
 
 object TableSerializer {
@@ -19,7 +18,7 @@ object TableSerializer {
 			val column = property.findAnnotation<Column>() ?: continue
 			val name = property.findAnnotation<Name>()?.name ?: property.name
 			val type = property.findAnnotation<DataType>()?.type ?: serializeToType(property)
-			val size = if (column.size == -1) null else column.size
+			val size = property.findAnnotation<Size>()?.size
 			val columnData = if (property is KMutableProperty<*>) {
 				ColumnData(name, type, size)
 			} else throw IllegalArgumentException("Field must not be final")
