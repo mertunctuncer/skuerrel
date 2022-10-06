@@ -13,9 +13,6 @@ repositories {
 }
 
 dependencies {
-    // 4.0.3 is the latest version to support java 8
-    implementation("com.zaxxer:HikariCP:4.0.3")
-
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.+")
