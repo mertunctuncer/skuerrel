@@ -1,3 +1,3 @@
 # Skuerrel
 
-A lightweight SQL serialization library for kotlin utilizing coroutines.
+A lightweight SQL ORM library for kotlin utilizing coroutines.
